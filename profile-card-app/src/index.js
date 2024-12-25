@@ -2,6 +2,38 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const skillList = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA"
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D"
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF"
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33"
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB"
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00"
+  }
+];
 
 
 function Avatar () {
@@ -21,7 +53,7 @@ function Intro () {
 function Skill(props) {
     return <div className="skill" style={{backgroundColor: props.color}}>
         <span>{props.skillName}</span>
-        <span>{props.emoji}</span>
+        <span>{props.level === "beginner" ? "👶" : props.level === "advanced" ? "💪" : props.level === "intermediate" ? "👍" : ""}</span>
     </div>
 }
 
@@ -31,12 +63,11 @@ function App() {
       <Avatar />
       <div className="data">
         <Intro />
-        <div className="skill-list">
-            <Skill skillName= "Python" emoji=":)" color="yellow" />
-            <Skill skillName= "Java" emoji=":)" color="red"/>
-            <Skill skillName= "Pandas" emoji=":)" color="blue"/>
-            <Skill skillName= "FastAPI" emoji=":)" color="grey"/>
-        </div>
+        <li className="skill-list">
+          {skillList.map((skill) => (<Skill skillName={skill.skill}
+          level={skill.level} color={skill.color}
+          />))}
+        </li>
         
       </div>
     </div>
